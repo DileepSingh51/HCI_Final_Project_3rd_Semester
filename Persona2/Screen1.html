@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Voice Mode</title>
+    <link rel="stylesheet" href="Screen1.css">
+</head>
+<body>
+
+    <div id="start-overlay" onclick="startSystem()">
+        <div class="start-btn">
+            <h1>CLICK TO ACTIVATE</h1>
+            <p>Voice Guidance System</p>
+        </div>
+    </div>
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <div class="sensor-bar">
+                <div class="camera-lens">
+                    <div class="lens-reflection"></div>
+                </div>
+                <span id="sensor-status">SYSTEM STANDBY</span>
+            </div>
+
+            <div class="content-center">
+                <div id="icon-area">
+                    <div class="accessibility-icon">👓</div>
+                </div>
+
+                <h1 class="main-msg" id="main-text">WAITING FOR USER...</h1>
+                
+                <div id="audio-wave" class="hidden">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+
+            <div class="card-instruction hidden" id="card-prompt">
+                Please Insert Card Below
+            </div>
+        </div>
+
+        <div class="hardware-area">
+            <div class="card-slot" onclick="insertCard()">
+                <div class="slot-light"></div>
+            </div>
+            <p>TACTILE CARD SLOT</p>
+        </div>
+    </div>
+
+<script>
+        let systemStarted = false;
+
+        // 1. SIMPLEST SPEAK FUNCTION
+        function speak(text) {
+            // Clear any stuck audio
+            window.speechSynthesis.cancel();
+
+            // Create the message
+            const msg = new SpeechSynthesisUtterance(text);
+            
+            // Do NOT set voice, pitch, or rate. 
+            // Let the browser decide automatically.
+            
+            // Speak!
+            window.speechSynthesis.speak(msg);
+        }
+
+        function startSystem() {
+            if (systemStarted) return;
+            
+            // Remove overlay
+            document.getElementById('start-overlay').style.display = "none";
+            systemStarted = true;
+
+            // Visuals
+            document.getElementById('sensor-status').innerText = "SCANNING FACE...";
+            document.getElementById('sensor-status').style.color = "red";
+
+            setTimeout(() => {
+                document.getElementById('sensor-status').innerText = "SUNGLASSES DETECTED";
+                document.getElementById('icon-area').innerHTML = "<div class='accessibility-icon'>🔊</div>";
+                document.getElementById('main-text').innerText = "VOICE MODE ACTIVATED";
+                document.getElementById('audio-wave').classList.remove('hidden');
+
+                // FORCE SPEAK
+                speak("Welcome Mr. Ahmed. Voice Mode Activated.");
+
+                // Second sentence after delay
+                setTimeout(() => {
+                    document.getElementById('card-prompt').classList.remove('hidden');
+                    speak("Please insert your card below.");
+                }, 3000);
+
+            }, 1000);
+        }
+
+        function insertCard() {
+            if(!systemStarted) {
+                alert("Please click the screen first!");
+                return;
+            }
+            speak("Card Inserted.");
+            setTimeout(() => {
+                 window.location.href = "Screen2.html";
+            }, 2000);
+        }
+    </script>
+    
+</body>
+</html>

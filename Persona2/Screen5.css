@@ -1,0 +1,131 @@
+/* Screen5.css */
+body {
+    background-color: #ffebee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.atm-machine {
+    background: #ef9a9a;
+    padding: 30px;
+    border-radius: 20px;
+    width: 480px;
+    border: 3px solid #e57373;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+.atm-screen {
+    background-color: #fff;
+    border: 5px solid #c62828;
+    height: 400px;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+/* Voice Caption */
+.caption-box {
+    background: #000;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-style: italic;
+    min-height: 40px;
+    margin-bottom: 20px;
+}
+
+/* The Transaction Details Card */
+.summary-card {
+    background: #fafafa;
+    border: 2px solid #333;
+    width: 90%;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.summary-card h2 {
+    margin: 0 0 15px 0;
+    border-bottom: 2px solid #e57373;
+    padding-bottom: 5px;
+    color: #c62828;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 5px;
+}
+
+.highlight-text {
+    color: #d84315; /* Dark Orange/Red for visibility */
+    font-size: 1.4rem;
+    background: #fff3e0;
+    padding: 2px 5px;
+}
+
+/* Controls */
+.controls {
+    margin-top: auto;
+    width: 100%;
+}
+
+.instruction {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.action-btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.yes-btn { background: #2e7d32; }
+.yes-btn:hover { background: #1b5e20; transform: scale(1.1); }
+
+.no-btn { background: #c62828; }
+.no-btn:hover { background: #b71c1c; transform: scale(1.1); }
+
+/* Success Screen Hidden State */
+.hidden { display: none; }
+
+#final-msg {
+    margin-top: 50px;
+    animation: popIn 0.5s ease;
+}
+
+#final-msg h1 { font-size: 4rem; margin: 0; }
+#final-msg h2 { color: #2e7d32; }
+
+@keyframes popIn {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}

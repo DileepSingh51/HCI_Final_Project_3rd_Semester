@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Audio Menu</title>
+    <link rel="stylesheet" href="Screen3.css">
+</head>
+<body onload="announceMenu()">
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <div class="caption-box">
+                <p id="system-msg">"Main Menu. Say 1 for Cash, 2 for Balance, 3 for Assistant."</p>
+            </div>
+
+            <div class="menu-list">
+                <div class="menu-item" id="opt1">
+                    <div class="number-box">1</div>
+                    <div class="text-box">WITHDRAW CASH</div>
+                </div>
+
+                <div class="menu-item" id="opt2">
+                    <div class="number-box">2</div>
+                    <div class="text-box">CHECK BALANCE</div>
+                </div>
+
+                <div class="menu-item" id="opt3">
+                    <div class="number-box">3</div>
+                    <div class="text-box">SPEAK TO AGENT</div>
+                </div>
+            </div>
+
+            <div class="bottom-controls">
+                <div class="mic-btn" onclick="simulateVoiceCommand()">
+                    🎤 TAP TO SPEAK
+                </div>
+                <p id="status-text">LISTENING FOR COMMAND...</p>
+            </div>
+
+        </div>
+
+        <div class="hardware-area">
+            <p>KEYPAD SHORTCUTS ENABLED: PRESS 1, 2, OR 3</p>
+        </div>
+    </div>
+
+    <script>
+        // 1. On Load: Highlight options as they are "read" out
+        function announceMenu() {
+            setTimeout(() => { highlight(1); }, 1000);
+            setTimeout(() => { highlight(2); }, 2500);
+            setTimeout(() => { highlight(3); }, 4000);
+            setTimeout(() => { clearHighlights(); }, 5500);
+        }
+
+        function highlight(num) {
+            clearHighlights(); // Reset others
+            document.getElementById('opt' + num).classList.add('active-focus');
+        }
+
+        function clearHighlights() {
+            document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active-focus'));
+        }
+
+        // 2. Simulate User Choosing Option 1
+        function simulateVoiceCommand() {
+            const status = document.getElementById('status-text');
+            const caption = document.getElementById('system-msg');
+            const micBtn = document.querySelector('.mic-btn');
+
+            // Visual Feedback
+            micBtn.style.background = "red";
+            micBtn.style.color = "white";
+            status.innerText = "LISTENING...";
+            status.style.color = "red";
+
+            setTimeout(() => {
+                // User "Says" Option 1
+                caption.innerText = "\"Option One\"";
+                highlight(1);
+                status.innerText = "CONFIRMED: WITHDRAW CASH";
+                status.style.color = "green";
+                
+                // Redirect
+                setTimeout(() => {
+                    window.location.href = "Screen4.html";
+                }, 2000);
+
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

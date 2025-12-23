@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Voice Withdrawal</title>
+    <link rel="stylesheet" href="Screen4.css">
+</head>
+<body>
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <div class="caption-box">
+                <p id="system-msg">"Please say the withdrawal amount. For example: Five Thousand."</p>
+            </div>
+
+            <div class="amount-display">
+                <span class="currency">Rs.</span>
+                <span id="amount-text">0</span>
+            </div>
+
+            <div class="control-zone" id="controls">
+                <div class="mic-btn" onclick="startVoiceInput()">
+                    🎤 TAP TO SPEAK
+                </div>
+                <p id="status">WAITING FOR INPUT...</p>
+            </div>
+
+            <div id="success-view" class="hidden">
+                <h2 style="color: #2e7d32; font-size: 2rem;">SUCCESS</h2>
+                <p>Please collect your cash below.</p>
+            </div>
+
+        </div>
+
+        <div class="hardware-area">
+            <div class="cash-slot">
+                <div class="shutter"></div>
+                <div class="cash-bill" id="money">
+                    <div class="bill-text">5000</div>
+                </div>
+            </div>
+            <p>CASH DISPENSER</p>
+        </div>
+    </div>
+
+    <script>
+        function startVoiceInput() {
+            const status = document.getElementById('status');
+            const amountText = document.getElementById('amount-text');
+            const caption = document.getElementById('system-msg');
+            const micBtn = document.querySelector('.mic-btn');
+
+            // 1. Visual "Listening" State
+            micBtn.style.background = "red";
+            micBtn.style.color = "white";
+            micBtn.classList.add('pulse');
+            status.innerText = "LISTENING...";
+            status.style.color = "red";
+
+            // 2. Simulate User Speaking "50,000"
+            setTimeout(() => {
+                caption.innerText = "\"Fifty Thousand\"";
+                amountText.innerText = "50,000";
+                
+                status.innerText = "VERIFYING...";
+                status.style.color = "#e65100"; // Orange
+                micBtn.classList.remove('pulse');
+
+                // 3. Redirect to Screen 5 (Confirmation)
+                setTimeout(() => {
+                    // We save the amount so Screen 5 knows what to say
+                    localStorage.setItem("voiceAmount", "50,000");
+                    
+                    // THIS WAS THE FIX: Link to Screen 5
+                    window.location.href = "Screen5.html"; 
+                }, 1500);
+
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

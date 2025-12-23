@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Voice PIN</title>
+    <link rel="stylesheet" href="Screen2.css">
+</head>
+<body>
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <div class="status-bar">
+                <span>🔊 VOICE MODE ACTIVE</span>
+                <span id="step-count">STEP 2 OF 4</span>
+            </div>
+
+            <div class="caption-box">
+                <p id="system-msg">"Please press the microphone button and say your 4-digit PIN."</p>
+            </div>
+
+            <div class="content-center">
+                
+                <div class="pin-display">
+                    <div class="dot" id="d1"></div>
+                    <div class="dot" id="d2"></div>
+                    <div class="dot" id="d3"></div>
+                    <div class="dot" id="d4"></div>
+                </div>
+
+                <div class="mic-container" onclick="activateMic()">
+                    <div class="mic-icon" id="mic-icon">🎤</div>
+                    <div class="pulse-ring"></div>
+                </div>
+
+                <h2 id="status-text">TAP MIC TO SPEAK</h2>
+
+            </div>
+        </div>
+
+        <div class="hardware-area">
+            <p>BRAILLE KEYPAD AVAILABLE BELOW</p>
+        </div>
+    </div>
+
+    <script>
+        function activateMic() {
+            const status = document.getElementById('status-text');
+            const mic = document.getElementById('mic-icon');
+            const caption = document.getElementById('system-msg');
+
+            // 1. Change UI to "Listening Mode"
+            status.innerText = "LISTENING...";
+            status.style.color = "red";
+            mic.classList.add('listening'); // Makes it shake
+            caption.innerText = "..."; // Clear text
+
+            // 2. Simulate User Speaking "1, 2, 3, 4"
+            // We use timeouts to fake the delay of speech recognition
+            
+            setTimeout(() => { fillDot(1); }, 1000); // 1st second
+            setTimeout(() => { fillDot(2); }, 1500);
+            setTimeout(() => { fillDot(3); }, 2000);
+            setTimeout(() => { 
+                fillDot(4); 
+                status.innerText = "PROCESSING...";
+                mic.classList.remove('listening');
+                caption.innerText = "\"PIN 1-2-3-4 Received\"";
+            }, 2500);
+
+            // 3. Success & Move Next
+            setTimeout(() => {
+                caption.innerText = "\"PIN Verified. Opening Menu.\"";
+                caption.style.color = "green";
+                
+                setTimeout(() => {
+                    // Redirect to Screen 3
+                    window.location.href = "Screen3.html";
+                }, 2000);
+            }, 4000);
+        }
+
+        function fillDot(num) {
+            document.getElementById('d' + num).classList.add('filled');
+        }
+    </script>
+</body>
+</html>

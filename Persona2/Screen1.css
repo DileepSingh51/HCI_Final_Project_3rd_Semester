@@ -1,0 +1,180 @@
+/* Screen1.css - Audio/Blind Persona */
+body {
+    background-color: #ffebee; /* Very light red wall background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.atm-machine {
+    background: #ef9a9a; /* Light Red Machine Body */
+    padding: 30px;
+    border-radius: 20px;
+    width: 480px;
+    box-shadow: 0 20px 50px rgba(100, 0, 0, 0.2);
+    border: 3px solid #e57373;
+}
+
+.atm-screen {
+    background-color: #fff; /* White screen for max contrast */
+    border: 8px solid #c62828; /* Dark Red Border */
+    height: 400px;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* The Camera Sensor Styling */
+.sensor-bar {
+    width: 100%;
+    background: #ffcdd2;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid #e57373;
+}
+
+.camera-lens {
+    width: 20px;
+    height: 20px;
+    background: #000;
+    border-radius: 50%;
+    position: relative;
+    border: 2px solid #555;
+}
+
+.lens-reflection {
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+
+#sensor-status {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.content-center {
+    margin-top: 40px;
+}
+
+.accessibility-icon {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.main-msg {
+    color: #b71c1c; /* Dark Red Text */
+    font-size: 1.5rem;
+}
+
+.card-instruction {
+    margin-top: auto;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #c62828;
+    animation: flash 1s infinite;
+}
+
+@keyframes flash {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Audio Wave Animation */
+#audio-wave {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    margin-top: 20px;
+}
+
+.bar {
+    width: 6px;
+    height: 10px;
+    background: #d32f2f;
+    margin: 0 3px;
+    border-radius: 10px;
+    animation: wave 1s infinite ease-in-out;
+}
+
+.bar:nth-child(2) { animation-delay: 0.1s; }
+.bar:nth-child(3) { animation-delay: 0.2s; }
+.bar:nth-child(4) { animation-delay: 0.3s; }
+.bar:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes wave {
+    0%, 100% { height: 10px; }
+    50% { height: 30px; }
+}
+
+.hardware-area {
+    margin-top: 20px;
+    text-align: center;
+    color: #b71c1c;
+    font-weight: bold;
+}
+
+.card-slot {
+    width: 200px;
+    height: 15px;
+    background: #3e2723; /* Dark brown/red slot */
+    margin: 5px auto;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid #ff8a80;
+}
+
+.hidden { display: none; }
+
+/* Add this to the bottom of Screen1.css */
+
+#start-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.start-btn {
+    border: 3px solid white;
+    padding: 20px 40px;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    animation: pulse 2s infinite;
+}
+
+.start-btn h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}

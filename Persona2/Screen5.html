@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Voice Confirmation</title>
+    <link rel="stylesheet" href="Screen5.css">
+</head>
+<body onload="startSummary()">
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <div class="caption-box">
+                <p id="system-msg">"Reviewing Transaction..."</p>
+            </div>
+
+            <div class="summary-card">
+                <h2>CONFIRMATION</h2>
+                <div class="row">
+                    <span>TYPE:</span>
+                    <strong>CASH WITHDRAWAL</strong>
+                </div>
+                <div class="row">
+                    <span>AMOUNT:</span>
+                    <strong class="highlight-text">Rs. 50,000</strong>
+                </div>
+                <div class="row">
+                    <span>FEE:</span>
+                    <strong>Rs. 0.00</strong>
+                </div>
+            </div>
+
+            <div class="controls">
+                <p class="instruction">SAY "YES" TO CONFIRM OR "NO" TO CANCEL</p>
+                
+                <div class="btn-group">
+                    <button class="action-btn yes-btn" onclick="confirmTransaction()">
+                        🎤 YES
+                    </button>
+                    <button class="action-btn no-btn" onclick="cancelTransaction()">
+                        ✖ NO
+                    </button>
+                </div>
+            </div>
+
+            <div id="final-msg" class="hidden">
+                <h1>✅</h1>
+                <h2>TRANSACTION COMPLETE</h2>
+                <p>Thank you for using Voice Banking.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function startSummary() {
+            const caption = document.getElementById('system-msg');
+            
+            // Simulate the computer reading the details
+            setTimeout(() => {
+                caption.innerText = "\"You are withdrawing fifty thousand rupees.\"";
+            }, 1000);
+
+            setTimeout(() => {
+                caption.innerText = "\"Say YES to confirm, or NO to cancel.\"";
+            }, 3500);
+        }
+
+        function confirmTransaction() {
+            const caption = document.getElementById('system-msg');
+            caption.innerText = "\"Confirmed. Dispensing Cash now.\"";
+            caption.style.color = "#2e7d32"; // Green text
+
+            // Show Success Screen
+            setTimeout(() => {
+                document.querySelector('.summary-card').style.display = 'none';
+                document.querySelector('.controls').style.display = 'none';
+                document.getElementById('final-msg').classList.remove('hidden');
+            }, 1500);
+
+            // Redirect to Main Home Page
+            setTimeout(() => {
+                // Adjust this path if your index.html is in a different spot!
+                window.location.href = "../Main.html"; 
+            }, 5000);
+        }
+
+        function cancelTransaction() {
+            const caption = document.getElementById('system-msg');
+            caption.innerText = "\"Cancelled. Returning to Menu.\"";
+            caption.style.color = "red";
+            
+            setTimeout(() => {
+                window.location.href = "Screen3.html"; // Go back to Menu
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
