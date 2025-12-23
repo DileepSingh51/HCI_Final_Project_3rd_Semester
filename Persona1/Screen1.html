@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM - Mrs. Shaheena</title>
+    <link rel="stylesheet" href="Screen1.css">
+</head>
+<body>
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            <div class="screen-content">
+                <h1 class="welcome-text">WELCOME</h1>
+                <p class="instruction">Mrs. Shaheena</p>
+                <div class="status-msg">Please Insert Your Card</div>
+                
+                <div class="card-animation">
+                    <div class="card"></div>
+                    <div class="slot"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hardware-area">
+            <div class="card-reader">
+                <label>Insert Card Here!/اپنا کارڈ داخل کریں</label>
+                <div class="insertion-point" onclick="goToNextScreen()"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goToNextScreen() {
+            // This will link to the next screen we build together
+            alert("Card Detected! Moving to PIN Screen...");
+            // This tells the browser to open your Screen2.html file
+           window.location.href = "Screen2.html"; 
+
+            // window.location.href = "shaheena_pin.html"; 
+        }
+    </script>
+</body>
+</html>

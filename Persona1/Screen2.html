@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM - PIN Entry</title>
+    <link rel="stylesheet" href="Screen2.css">
+</head>
+<body>
+
+    <div class="atm-machine">
+        <div class="atm-screen" id="screen">
+            
+            <div id="phase1" class="screen-content">
+    <div class="accessibility-prompt" onclick="enableLargeFont()">
+        <h2 style="font-size: 24px;">ENABLE LARGE FONTS?</h2>
+        <p>Click here for easier reading</p>
+    </div>
+</div>
+
+            <div id="phase2" class="screen-content hidden">
+                <h2 id="pin-title">ENTER PIN</h2>
+                <div class="pin-dot-container">
+                    <div class="pin-dot" id="dot1"></div>
+                    <div class="pin-dot" id="dot2"></div>
+                    <div class="pin-dot" id="dot3"></div>
+                    <div class="pin-dot" id="dot4"></div>
+                </div>
+                <p style="font-size: 10px; color: #888;">Use the keypad below</p>
+            </div>
+
+        </div>
+
+        <div class="hardware-area">
+            <div class="numpad">
+                <button class="num-btn" onclick="pressKey()">1</button>
+                <button class="num-btn" onclick="pressKey()">2</button>
+                <button class="num-btn" onclick="pressKey()">3</button>
+                <button class="num-btn" onclick="pressKey()">4</button>
+                <button class="num-btn" onclick="pressKey()">5</button>
+                <button class="num-btn" onclick="pressKey()">6</button>
+                <button class="num-btn" onclick="pressKey()">7</button>
+                <button class="num-btn" onclick="pressKey()">8</button>
+                <button class="num-btn" onclick="pressKey()">9</button>
+                <button class="num-btn" style="background:red" onclick="clearPin()">C</button>
+                <button class="num-btn" onclick="pressKey()">0</button>
+                <button class="num-btn" style="background:green" onclick="submitPin()">E</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let pinCount = 0;
+        let largeFont = false;
+
+        // Automatically move to PIN screen after 3 seconds if no click
+        setTimeout(() => {
+            showPinPad();
+        }, 4000);
+
+        function showPinPad() {
+            document.getElementById('phase1').classList.add('hidden');
+            document.getElementById('phase2').classList.remove('hidden');
+        }
+
+        // Teacher's Trick: Function to handle "Large Font" choice
+        function enableLargeFont() {
+            largeFont = true;
+            document.getElementById('pin-title').style.fontSize = "40px";
+            showPinPad();
+        }
+
+        function pressKey() {
+            if(pinCount < 4) {
+                pinCount++;
+                document.getElementById(`dot${pinCount}`).classList.add('filled');
+            }
+            if(pinCount === 4) {
+                setTimeout(() => { alert("PIN Verified!"); }, 500);
+            }
+        }
+
+        function clearPin() {
+            pinCount = 0;
+            for(let i=1; i<=4; i++) {
+                document.getElementById(`dot${i}`).classList.remove('filled');
+            }
+        }
+        function submitPin() {
+       if(pinCount === 4) {
+        alert("PIN Verified! Welcome Mrs. Shaheena.");
+        // We will build Screen3.html (Main Menu) next!
+        window.location.href = "Screen3.html"; 
+    } else {
+        alert("Please enter a 4-digit PIN");
+    }
+}
+    </script>
+</body>
+</html>

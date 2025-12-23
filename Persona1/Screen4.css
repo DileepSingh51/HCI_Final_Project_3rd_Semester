@@ -1,0 +1,80 @@
+/* Screen4.css */
+body {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.atm-machine {
+    background: #d1d1d1;
+    padding: 30px;
+    border-radius: 15px;
+    width: 500px;
+}
+
+.atm-screen {
+    background: #000;
+    color: #fff;
+    min-height: 350px;
+    border: 10px solid #333;
+    padding: 30px;
+    text-align: center;
+}
+
+.title {
+    color: #f1c40f; /* Golden color for visibility */
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.amount-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.amt-btn {
+    background: #fff;
+    border: none;
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.amt-btn:hover {
+    background: #27ae60;
+    color: white;
+}
+
+.other {
+    background: #3498db;
+    color: white;
+}
+
+/* Custom Input Styling */
+#other-amount {
+    width: 80%;
+    padding: 15px;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.input-controls {
+    display: flex;
+    justify-content: space-around;
+}
+
+.confirm-btn { background: #27ae60; color: white; padding: 15px 30px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
+.cancel-btn { background: #e74c3c; color: white; padding: 15px 30px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
+
+.hidden {
+    display: none !important;
+}

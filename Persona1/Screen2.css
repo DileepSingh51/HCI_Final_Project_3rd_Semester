@@ -1,0 +1,131 @@
+/* shaheena_style.css */
+body {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.atm-machine {
+    background: #d1d1d1;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    width: 450px;
+}
+
+.atm-screen {
+    background-color: #000;
+    color: #fff;
+    height: 300px;
+    border: 10px solid #444;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* Accessibility Button Style */
+.big-font-btn {
+    background: #fff;
+    color: #000;
+    padding: 15px 25px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    font-size: 1.2rem;
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+/* PIN Dots */
+.pin-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.dot {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.dot.active {
+    background-color: #fff;
+}
+
+/* Numpad Styling */
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 25px;
+    padding: 10px;
+}
+
+.key {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.key:active {
+    background: #666;
+}
+
+.hidden {
+    display: none !important;
+}
+/* Screen2.css - Essential Additions */
+
+.hidden {
+    display: none !important;
+}
+
+.pin-dot-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pin-dot {
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+/* This makes the dot turn white when a number is pressed */
+.pin-dot.filled {
+    background-color: white;
+}
+
+.numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 200px;
+    margin: 20px auto;
+}
+
+.num-btn {
+    padding: 15px;
+    cursor: pointer;
+    background: #444;
+    color: white;
+    border: 1px solid #666;
+}

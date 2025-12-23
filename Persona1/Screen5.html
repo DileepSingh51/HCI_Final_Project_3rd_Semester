@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Receipt</title>
+    <link rel="stylesheet" href="Screen5.css">
+</head>
+<body>
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <div id="choice-view">
+                <h2 class="success-msg">TRANSACTION SUCCESSFUL!</h2>
+                <p>Would you like a receipt?</p>
+                
+                <div class="btn-group">
+                    <button class="receipt-btn" onclick="showReceipt()">
+                        📄 PRINT RECEIPT
+                    </button>
+                    
+                    <button class="green-btn" onclick="finishGreen()">
+                        🌿 GO GREEN (No Receipt)
+                    </button>
+                </div>
+            </div>
+
+            <div id="receipt-view" class="hidden">
+                <div class="paper-receipt">
+                    <h3>ATM TRANSACTION</h3>
+                    <p>--------------------------</p>
+                    <p>DATE: 2025-12-17</p>
+                    <p>TIME: 08:45 PM</p>
+                    <p>CARD: ************4521</p>
+                    <p>--------------------------</p>
+                    <p style="font-size: 1.2rem; font-weight: bold;">WITHDRAWAL: Rs. 1000</p>
+                    <p>FEE: Rs. 0.00</p>
+                    <p>--------------------------</p>
+                    <p>THANK YOU MRS. SHAHEENA</p>
+                </div>
+                
+                <button class="exit-btn" onclick="endSession()">TAKE CARD & EXIT</button>
+            </div>
+
+            <div id="green-msg" class="hidden">
+                <h1 style="color: #27ae60; font-size: 3rem;">🌿</h1>
+                <h2>THANK YOU!</h2>
+                <p>You saved paper today.</p>
+                <button class="exit-btn" onclick="endSession()">TAKE CARD & EXIT</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function showReceipt() {
+            document.getElementById('choice-view').classList.add('hidden');
+            document.getElementById('receipt-view').classList.remove('hidden');
+        }
+
+        function finishGreen() {
+            document.getElementById('choice-view').classList.add('hidden');
+            document.getElementById('green-msg').classList.remove('hidden');
+        }
+
+        function endSession() {
+            alert("Please take your card.");
+            // Goes back to the very start (The Dashboard)
+            window.location.href = "Main.html";
+        }
+    </script>
+</body>
+</html>

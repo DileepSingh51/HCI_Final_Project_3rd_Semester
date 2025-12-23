@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Select Amount</title>
+    <link rel="stylesheet" href="Screen4.css">
+</head>
+<body>
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <div id="quick-select">
+                <h2 class="title">SELECT AMOUNT</h2>
+                <div class="amount-grid">
+                    <button class="amt-btn" onclick="processWithdraw(500)">500</button>
+                    <button class="amt-btn" onclick="processWithdraw(1000)">1000</button>
+                    <button class="amt-btn" onclick="processWithdraw(1500)">1500</button>
+                    <button class="amt-btn other" onclick="showOtherInput()">OTHER</button>
+                </div>
+            </div>
+
+            <div id="custom-input" class="hidden">
+                <h2 class="title">ENTER AMOUNT</h2>
+                <input type="number" id="other-amount" placeholder="Enter Multiples of 500">
+                <div class="input-controls">
+                    <button class="confirm-btn" onclick="processOther()">CONFIRM</button>
+                    <button class="cancel-btn" onclick="hideOtherInput()">CANCEL</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function showOtherInput() {
+            document.getElementById('quick-select').classList.add('hidden');
+            document.getElementById('custom-input').classList.remove('hidden');
+        }
+
+        function hideOtherInput() {
+            document.getElementById('custom-input').classList.add('hidden');
+            document.getElementById('quick-select').classList.remove('hidden');
+        }
+
+        function processWithdraw(amount) {
+            alert("Withdrawing: Rs. " + amount);
+            // Move to Success/Receipt Screen
+            window.location.href = "Screen5.html";
+        }
+
+        function processOther() {
+            let amount = document.getElementById('other-amount').value;
+            if (amount === "" || amount <= 0) {
+                alert("Please enter a valid amount");
+            } else if (amount % 500 !== 0) {
+                alert("Please enter amount in multiples of 500");
+            } else {
+                processWithdraw(amount);
+            }
+        }
+    </script>
+</body>
+</html>

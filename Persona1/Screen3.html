@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM - Account Selection</title>
+    <link rel="stylesheet" href="Screen3.css">
+</head>
+<body>
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            <div class="screen-content">
+                <h2 class="title">SELECT ACCOUNT TYPE</h2>
+                <p class="subtitle">Mrs. Shaheena, please choose one:</p>
+                
+                <div class="account-container">
+                    <button class="acc-btn" onclick="selectAccount('Current')">
+                        1. CURRENT ACCOUNT
+                    </button>
+                    <button class="acc-btn" onclick="selectAccount('Saving')">
+                        2. SAVING ACCOUNT
+                    </button>
+                </div>
+
+                <button class="back-link" onclick="window.history.back()">« Go Back</button>
+            </div>
+        </div>
+        
+        <div class="speaker-grill"></div>
+    </div>
+
+    <script>
+        function selectAccount(type) {
+            alert(type + " Account Selected");
+            // This will lead to the Main Menu (Screen4.html)
+            window.location.href = "Screen4.html";
+        }
+    </script>
+</body>
+</html>
