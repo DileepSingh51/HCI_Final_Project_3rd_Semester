@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Tourist Mode</title>
+    <link rel="stylesheet" href="Screen1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <div id="welcome-phase" class="content-center">
+                <h1 class="hello-text">Welcome Tourist!</h1>
+                <p class="sub-text">Please tap the globe to select language</p>
+                
+                <div class="globe-container" onclick="showLanguages()">
+                    <div class="earth">
+                        🌍
+                    </div>
+                    <div class="orbit">✈️</div>
+                </div>
+            </div>
+
+            <div id="lang-menu" class="hidden">
+                <h2 class="menu-title">Select Language</h2>
+                
+                <div class="lang-grid">
+                    <button class="lang-btn" onclick="setLanguage('English')">
+                        <span class="flag">🇺🇸</span> English
+                    </button>
+
+                    <button class="lang-btn" onclick="setLanguage('Japanese')">
+                        <span class="flag">🇯🇵</span> 日本語
+                    </button>
+
+                    <button class="lang-btn" onclick="setLanguage('Chinese')">
+                        <span class="flag">🇨🇳</span> 中文
+                    </button>
+
+                    <button class="lang-btn" onclick="setLanguage('German')">
+                        <span class="flag">🇩🇪</span> Deutsch
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="hardware-area">
+            <div class="card-slot"></div>
+            <p>International Cards Accepted</p>
+        </div>
+    </div>
+
+    <script>
+        function showLanguages() {
+            // Hide the big globe, show the menu
+            document.getElementById('welcome-phase').classList.add('fade-out');
+            
+            setTimeout(() => {
+                document.getElementById('welcome-phase').style.display = 'none';
+                document.getElementById('lang-menu').classList.remove('hidden');
+                document.getElementById('lang-menu').classList.add('slide-up');
+            }, 500);
+        }
+
+        function setLanguage(lang) {
+            alert("Language set to: " + lang);
+            // Save the language for the next screens
+            localStorage.setItem("selectedLang", lang);
+            
+            // Move to Screen 2 (Insert Card / PIN)
+            window.location.href = "Screen2.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+/* Screen5.css - Tourist Receipt */
+body {
+    background: radial-gradient(circle at center, #fce4ec 0%, #f8bbd0 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.atm-machine {
+    background: rgba(255, 255, 255, 0.4);
+    padding: 20px;
+    border-radius: 40px;
+    width: 450px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 20px 50px rgba(233, 30, 99, 0.15);
+    backdrop-filter: blur(20px);
+}
+
+.atm-screen {
+    position: relative;
+    height: 400px;
+    background: linear-gradient(135deg, #f8bbd0 0%, #f48fb1 100%);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Currency Tip Sticker */
+.currency-tip {
+    position: absolute;
+    top: 20px;
+    background: #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #880e4f;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 20;
+    animation: floatTip 3s infinite ease-in-out;
+}
+
+@keyframes floatTip {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.glow-header {
+    color: white;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Button Layout */
+.btn-container {
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+}
+
+.glass-btn {
+    background: rgba(255, 255, 255, 0.3);
+    width: 140px;
+    height: 140px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #880e4f;
+    font-weight: bold;
+}
+
+.glass-btn:hover {
+    background: white;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2);
+}
+
+.green-mode:hover {
+    color: #2e7d32; /* Turns green on hover */
+}
+
+.emoji { font-size: 3rem; margin-bottom: 10px; }
+
+/* Receipt Animation */
+#receipt-view {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    z-index: 10;
+}
+
+.paper-slip {
+    background: #fff;
+    width: 200px;
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    animation: printSlip 1s ease-out forwards;
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+@keyframes printSlip {
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Green View Animation */
+#green-view {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    color: white;
+}
+
+.eco-circle {
+    width: 100px;
+    height: 100px;
+    background: #69f0ae;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    box-shadow: 0 0 20px #69f0ae;
+    animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes pop { from {transform: scale(0);} to {transform: scale(1);} }
+
+.exit-btn {
+    margin-top: 20px;
+    background: #ad1457;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Background Orbs */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(30px);
+}
+.orb-1 { width: 120px; height: 120px; background: #f06292; top: -40px; left: -40px; opacity: 0.4; }
+.orb-2 { width: 90px; height: 90px; background: #e91e63; bottom: -20px; right: -20px; opacity: 0.4; }

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Receipt</title>
+    <link rel="stylesheet" href="Screen5.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body onload="loadFinal()">
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <div class="currency-tip">
+                <span class="tip-icon">💡</span>
+                <span id="rate-text">1 USD = 278.50 PKR</span>
+            </div>
+
+            <div id="choice-view">
+                <h2 id="final-title" class="glow-header">Transaction Complete!</h2>
+                
+                <div class="btn-container">
+                    <div class="glass-btn" onclick="showReceipt()">
+                        <div class="emoji">📄</div>
+                        <span id="btn-print">Print Receipt</span>
+                    </div>
+
+                    <div class="glass-btn green-mode" onclick="showGreen()">
+                        <div class="emoji">🌿</div>
+                        <span id="btn-green">Go Green</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="receipt-view" class="hidden">
+                <div class="paper-slip">
+                    <h3>TRAVEL BANK</h3>
+                    <p>----------------</p>
+                    <p>DATE: 2025-12-17</p>
+                    <p>WITHDRAWAL: <span id="rec-amt">500</span></p>
+                    <p>FX RATE: 278.50</p>
+                    <p>----------------</p>
+                    <p>ENJOY YOUR TRIP!</p>
+                </div>
+                <button class="exit-btn" onclick="finish()">EXIT ➜</button>
+            </div>
+
+            <div id="green-view" class="hidden">
+                <div class="eco-circle">
+                    🌱
+                </div>
+                <h2 id="thx-msg">Thank You!</h2>
+                <p id="save-msg">You saved paper.</p>
+                <button class="exit-btn" onclick="finish()">EXIT ➜</button>
+            </div>
+
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+
+        </div>
+    </div>
+
+    <script>
+        const langData = {
+            'English': { title: "Transaction Complete!", print: "Print Receipt", green: "Go Green", rate: "1 USD = 278.50 PKR", thx: "Thank You!", save: "You saved paper." },
+            'Japanese': { title: "取引完了！", print: "レシート印刷", green: "エコモード", rate: "1 USD = 145 JPY", thx: "ありがとう", save: "紙を節約しました" },
+            'Chinese': { title: "交易完成！", print: "打印收据", green: "环保模式", rate: "1 USD = 7.2 CNY", thx: "谢谢", save: "您节省了纸张" },
+            'German': { title: "Transaktion beendet!", print: "Quittung drucken", green: "Grün werden", rate: "1 USD = 0.92 EUR", thx: "Danke!", save: "Papier gespart" }
+        };
+
+        function loadFinal() {
+            let lang = localStorage.getItem("selectedLang") || 'English';
+            let amt = localStorage.getItem("withdrawAmount") || "500";
+            const t = langData[lang];
+
+            // Update Text
+            document.getElementById('final-title').innerText = t.title;
+            document.getElementById('btn-print').innerText = t.print;
+            document.getElementById('btn-green').innerText = t.green;
+            document.getElementById('rate-text').innerText = t.rate;
+            document.getElementById('thx-msg').innerText = t.thx;
+            document.getElementById('save-msg').innerText = t.save;
+            
+            // Update Receipt Amount
+            document.getElementById('rec-amt').innerText = amt;
+        }
+
+        function showReceipt() {
+            document.getElementById('choice-view').style.display = 'none';
+            document.getElementById('receipt-view').style.display = 'flex';
+        }
+
+        function showGreen() {
+            document.getElementById('choice-view').style.display = 'none';
+            document.getElementById('green-view').style.display = 'flex';
+        }
+
+        function finish() {
+            alert("Safe Travels! / 旅の安全を！");
+            window.location.href = "../Main.html"; // Back to Home
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+/* Screen4.css - Amount Grid */
+body {
+    background: radial-gradient(circle at center, #fce4ec 0%, #f8bbd0 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.atm-machine {
+    background: rgba(255, 255, 255, 0.4);
+    padding: 20px;
+    border-radius: 40px;
+    width: 450px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 20px 50px rgba(233, 30, 99, 0.15);
+    backdrop-filter: blur(20px);
+}
+
+.atm-screen {
+    position: relative;
+    height: 350px;
+    background: linear-gradient(135deg, #f8bbd0 0%, #f48fb1 100%);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.glow-header {
+    color: white;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    margin-bottom: 25px;
+    z-index: 10;
+}
+
+.amount-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    z-index: 10;
+}
+
+.neon-btn {
+    width: 130px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 15px;
+    color: #880e4f;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.neon-btn:hover {
+    background: white;
+    color: #e91e63;
+    box-shadow: 0 0 15px #ff80ab;
+    transform: scale(1.05);
+}
+
+.other-btn {
+    background: rgba(233, 30, 99, 0.2);
+    color: white;
+}
+
+/* Custom Input Styling */
+#custom-view {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    z-index: 10;
+}
+
+#custom-amt {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #e91e63;
+    width: 200px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+}
+
+.action-row { display: flex; gap: 20px; }
+
+.circle-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back { background: #ff5252; }
+.go { background: #69f0ae; }
+.circle-btn:hover { transform: rotate(90deg); }
+
+.orb-1 {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: #f06292;
+    border-radius: 50%;
+    filter: blur(40px);
+    top: -50px;
+    left: 50px;
+    opacity: 0.4;
+    animation: pulse 4s infinite;
+}
+
+@keyframes pulse { 0%{opacity:0.4} 50%{opacity:0.6} 100%{opacity:0.4} }

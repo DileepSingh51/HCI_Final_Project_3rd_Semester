@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Select Amount</title>
+    <link rel="stylesheet" href="Screen4.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body onload="checkLang()">
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <h2 id="amt-title" class="glow-header">Select Amount</h2>
+
+            <div class="amount-grid" id="grid-view">
+                <button class="neon-btn" onclick="goReceipt(500)">500</button>
+                <button class="neon-btn" onclick="goReceipt(1000)">1000</button>
+                <button class="neon-btn" onclick="goReceipt(1500)">1500</button>
+                <button class="neon-btn other-btn" onclick="showInput()" id="btn-other">Other</button>
+            </div>
+
+            <div id="custom-view" class="hidden">
+                <input type="number" id="custom-amt" placeholder="Enter Amount...">
+                <div class="action-row">
+                    <button class="circle-btn back" onclick="hideInput()">✖</button>
+                    <button class="circle-btn go" onclick="goCustom()">➜</button>
+                </div>
+            </div>
+
+            <div class="orb orb-1"></div>
+
+        </div>
+    </div>
+
+    <script>
+        function checkLang() {
+            let lang = localStorage.getItem("selectedLang") || 'English';
+            if(lang === 'Japanese') {
+                document.getElementById('amt-title').innerText = "金額を選択";
+                document.getElementById('btn-other').innerText = "その他";
+            } else if (lang === 'Chinese') {
+                document.getElementById('amt-title').innerText = "选择金额";
+                document.getElementById('btn-other').innerText = "其他";
+            }
+            // Add others as needed
+        }
+
+        function showInput() {
+            document.getElementById('grid-view').style.display = 'none';
+            document.getElementById('custom-view').style.display = 'flex';
+        }
+
+        function hideInput() {
+            document.getElementById('custom-view').style.display = 'none';
+            document.getElementById('grid-view').style.display = 'grid';
+        }
+
+        function goReceipt(amount) {
+            localStorage.setItem("withdrawAmount", amount);
+            window.location.href = "Screen5.html";
+        }
+
+        function goCustom() {
+            let val = document.getElementById('custom-amt').value;
+            if(val > 0) goReceipt(val);
+        }
+    </script>
+</body>
+</html>

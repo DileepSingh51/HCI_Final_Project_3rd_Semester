@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Tourist PIN</title>
+    <link rel="stylesheet" href="Screen2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body onload="loadLanguage()">
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <div class="glass-panel">
+                <div class="header">
+                    <span id="lang-flag">🇺🇸</span>
+                    <span id="current-lang">ENGLISH</span>
+                </div>
+
+                <div class="content">
+                    <h1 id="welcome-text" class="glow-text">Welcome, Sara!</h1>
+                    <p id="instruction-text">Please Enter Your PIN</p>
+                    
+                    <div class="pin-container">
+                        <div class="neon-dot" id="d1"></div>
+                        <div class="neon-dot" id="d2"></div>
+                        <div class="neon-dot" id="d3"></div>
+                        <div class="neon-dot" id="d4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+
+        </div>
+
+        <div class="keypad-area">
+            <div class="keys-grid">
+                <button onclick="press(1)">1</button>
+                <button onclick="press(2)">2</button>
+                <button onclick="press(3)">3</button>
+                <button onclick="press(4)">4</button>
+                <button onclick="press(5)">5</button>
+                <button onclick="press(6)">6</button>
+                <button onclick="press(7)">7</button>
+                <button onclick="press(8)">8</button>
+                <button onclick="press(9)">9</button>
+                <button class="clear-btn" onclick="clearPin()">C</button>
+                <button onclick="press(0)">0</button>
+                <button class="enter-btn" onclick="submitPin()">➜</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dictionary for Translations
+        const translations = {
+            'English': { welcome: "Welcome, Sara!", text: "Please Enter Your PIN", flag: "🇺🇸" },
+            'Japanese': { welcome: "ようこそ、サラ様", text: "暗証番号を入力してください", flag: "🇯🇵" },
+            'Chinese': { welcome: "欢迎, 莎拉", text: "请输入您的密码", flag: "🇨🇳" },
+            'German': { welcome: "Willkommen, Sara!", text: "Bitte PIN eingeben", flag: "🇩🇪" }
+        };
+
+        let pinCount = 0;
+
+        function loadLanguage() {
+            // 1. Get the choice from Screen 1
+            let lang = localStorage.getItem("selectedLang") || 'English';
+            
+            // 2. Update the Screen Text
+            const data = translations[lang];
+            document.getElementById('welcome-text').innerText = data.welcome;
+            document.getElementById('instruction-text').innerText = data.text;
+            document.getElementById('lang-flag').innerText = data.flag;
+            document.getElementById('current-lang').innerText = lang.toUpperCase();
+        }
+
+        function press(num) {
+            if (pinCount < 4) {
+                pinCount++;
+                // Add "active" class to light up the neon dot
+                document.getElementById('d' + pinCount).classList.add('active');
+            }
+        }
+
+        function clearPin() {
+            pinCount = 0;
+            for(let i=1; i<=4; i++) {
+                document.getElementById('d'+i).classList.remove('active');
+            }
+        }
+
+        function submitPin() {
+            if(pinCount === 4) {
+                // Success Animation then move to Menu
+                document.getElementById('instruction-text').style.color = "#00e676";
+                document.getElementById('instruction-text').innerText = "✔ AUTHORIZED";
+                setTimeout(() => {
+                    window.location.href = "Screen3.html";
+                }, 1000);
+            } else {
+                alert("PIN too short / 密码太短 / PIN zu kurz");
+            }
+        }
+    </script>
+</body>
+</html>
