@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Student PIN</title>
+    <link rel="stylesheet" href="Screen1_Pin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <h2 class="header-text">AUTHENTICATION</h2>
+            <p class="sub-text">Enter 4-Digit Security Code</p>
+
+            <div class="pin-box-container">
+                <div class="pin-box" id="b1"></div>
+                <div class="pin-box" id="b2"></div>
+                <div class="pin-box" id="b3"></div>
+                <div class="pin-box" id="b4"></div>
+            </div>
+
+            <div class="digital-keypad">
+                <button onclick="press(1)">1</button>
+                <button onclick="press(2)">2</button>
+                <button onclick="press(3)">3</button>
+                <button onclick="press(4)">4</button>
+                <button onclick="press(5)">5</button>
+                <button onclick="press(6)">6</button>
+                <button onclick="press(7)">7</button>
+                <button onclick="press(8)">8</button>
+                <button onclick="press(9)">9</button>
+                <button class="clr" onclick="clearPin()">✖</button>
+                <button onclick="press(0)">0</button>
+                <button class="go" onclick="submitPin()">➜</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let pinCount = 0;
+
+        function press(num) {
+            if (pinCount < 4) {
+                pinCount++;
+                // Fill the box with a neon dot/star
+                document.getElementById('b' + pinCount).innerText = "*";
+                document.getElementById('b' + pinCount).classList.add('active');
+            }
+        }
+
+        function clearPin() {
+            pinCount = 0;
+            for(let i=1; i<=4; i++) {
+                const box = document.getElementById('b' + i);
+                box.innerText = "";
+                box.classList.remove('active');
+            }
+        }
+
+        function submitPin() {
+            if(pinCount === 4) {
+                // Success! Move to the Main Menu
+                window.location.href = "Screen2.html";
+            } else {
+                alert("PIN incomplete!");
+            }
+        }
+    </script>
+</body>
+</html>

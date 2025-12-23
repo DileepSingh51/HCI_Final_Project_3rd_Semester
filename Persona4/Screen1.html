@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Student Speed Mode</title>
+    <link rel="stylesheet" href="Screen1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <div class="header">
+                <span class="uni-logo">🎓 UNI-BANK</span>
+                <span class="status-badge">⚡ SPEED MODE READY</span>
+            </div>
+
+            <div class="split-container">
+                
+                <div class="option-box qr-box" onclick="scanQR()">
+                    <div class="scanner-overlay">
+                        <div class="scan-line"></div>
+                    </div>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=AliLogin" alt="QR Code" class="qr-img">
+                    <h3>SCAN QR</h3>
+                    <p>Instant Login (No PIN)</p>
+                </div>
+
+                <div class="divider">OR</div>
+
+                <div class="option-box card-box" onclick="insertCard()">
+                    <div class="card-icon">💳</div>
+                    <h3>INSERT CARD</h3>
+                    <p>Standard Login</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hardware-area">
+            <div class="led-strip"></div>
+            <p>STUDENT ID RECOGNIZED</p>
+        </div>
+    </div>
+
+    <script>
+        function scanQR() {
+            const line = document.querySelector('.scan-line');
+            line.style.background = "#00e676"; // Turn bright green
+            line.style.boxShadow = "0 0 10px #00e676";
+            
+            // Simulating Scan
+            setTimeout(() => {
+                alert("⚡ QR VERIFIED! Welcome Ali.");
+                localStorage.setItem("loginMode", "QR");
+                // Speed Run: Skip PIN, go straight to Menu!
+                window.location.href = "Screen2.html"; 
+            }, 1000);
+        }
+
+        function insertCard() {
+            alert("Card Detected. Please Enter PIN.");
+            localStorage.setItem("loginMode", "Card");
+            // Traditional: Go to PIN Screen
+            window.location.href = "Screen1_Pin.html"; 
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Transaction Receipt</title>
+    <link rel="stylesheet" href="Screen3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body onload="loadReceipt()">
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <div class="success-ring">
+                <div class="checkmark">✔</div>
+            </div>
+
+            <h2 id="status-text" class="status-msg">SUCCESS!</h2>
+
+            <div class="digital-receipt">
+                <div class="receipt-header">
+                    <span>UNI-BANK MOBILE</span>
+                    <span style="font-size:0.8rem">17-DEC-2025</span>
+                </div>
+                
+                <div class="receipt-body">
+                    <div class="icon-area" id="rec-icon">⚡</div>
+                    <p id="rec-title">TRANSACTION TYPE</p>
+                    <h1 id="rec-amount">Rs. 0</h1>
+                </div>
+
+                <div class="receipt-footer">
+                    <p>Remaining Bal: Rs. 12,450</p>
+                    <p class="ref-code">REF: #TXN-9984-SPEED</p>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="action-btn print" onclick="alert('Printing...')">🖨 PRINT</button>
+                <button class="action-btn exit" onclick="finish()">EXIT ➜</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function loadReceipt() {
+            // 1. Get Data from Memory
+            const type = localStorage.getItem("txnType") || "TRANSACTION";
+            const amount = localStorage.getItem("txnAmount") || "0";
+            const icon = localStorage.getItem("txnIcon") || "✔";
+
+            // 2. Update the Screen
+            document.getElementById('rec-title').innerText = type;
+            document.getElementById('rec-amount').innerText = "Rs. " + amount;
+            document.getElementById('rec-icon').innerText = icon;
+
+            // 3. Special Color for Fees
+            if(type === "UNIVERSITY FEE") {
+                document.getElementById('rec-amount').style.color = "#ffeb3b"; // Yellow for Fee
+            }
+        }
+
+        function finish() {
+            localStorage.clear(); // Clear data for security
+            window.location.href = "../Main.html"; // Back to Home
+        }
+    </script>
+</body>
+</html>

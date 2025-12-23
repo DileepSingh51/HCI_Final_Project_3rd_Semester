@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM - Student Menu</title>
+    <link rel="stylesheet" href="Screen2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body onload="checkLogin()">
+
+    <div class="atm-machine">
+        <div class="atm-screen">
+            
+            <div class="status-bar">
+                <span id="welcome-user">HI, ALI</span>
+                <span class="balance-badge">BAL: Rs. 12,450</span>
+            </div>
+
+            <h2 class="menu-title">QUICK ACTIONS</h2>
+
+            <div class="menu-grid">
+                <div class="menu-btn unique-btn" onclick="payFee()">
+                    <div class="icon">🎓</div>
+                    <span>PAY SEMESTER FEE</span>
+                </div>
+
+                <div class="menu-btn" onclick="fastCash(5000)">
+                    <div class="icon">⚡</div>
+                    <span>FAST CASH 5000</span>
+                </div>
+
+                <div class="menu-btn" onclick="alert('Balance: Rs. 12,450')">
+                    <div class="icon">💰</div>
+                    <span>CHECK BALANCE</span>
+                </div>
+
+                <div class="menu-btn" onclick="alert('Opening Amount Selection...')">
+                    <div class="icon">⌨</div>
+                    <span>OTHER AMOUNT</span>
+                </div>
+            </div>
+
+            <button class="logout-btn" onclick="location.href='../Main.html'">EXIT ➜</button>
+
+        </div>
+    </div>
+
+    <<script>
+        function checkLogin() {
+            let mode = localStorage.getItem("loginMode");
+            if(mode === "QR") {
+                document.getElementById('welcome-user').innerText = "HI ALI (QR VERIFIED)";
+            }
+        }
+
+        // 1. Pay Fee Function
+        function payFee() {
+            // Save data for the receipt
+            localStorage.setItem("txnType", "UNIVERSITY FEE");
+            localStorage.setItem("txnAmount", "8,500");
+            localStorage.setItem("txnIcon", "🎓");
+            // Go to Receipt
+            window.location.href = "Screen3.html";
+        }
+
+        // 2. Fast Cash Function
+        function fastCash(amount) {
+            localStorage.setItem("txnType", "FAST CASH");
+            localStorage.setItem("txnAmount", amount);
+            localStorage.setItem("txnIcon", "⚡");
+            window.location.href = "Screen3.html";
+        }
+
+        // 3. Balance Check
+        function checkBal() {
+            localStorage.setItem("txnType", "CURRENT BALANCE");
+            localStorage.setItem("txnAmount", "12,450");
+            localStorage.setItem("txnIcon", "💰");
+            window.location.href = "Screen3.html";
+        }
+    </script>
+</body>
+</html>
